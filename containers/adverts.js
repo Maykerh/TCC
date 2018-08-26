@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import ListView from '../components/listView';
 import { defaultViewStyle } from '../assets/styleVariables';
-import FloatingButton from '../components/floatingButton';
 
 var data = [
     {id: '1', title: '3 Caixas de azulejo', description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore, a facilis fugit, quia repudiandae ab id, ad asperiores in at nisi quo nostrum. Quod doloribus optio blanditiis, architecto modi consequatur.'},
@@ -15,19 +14,19 @@ var data = [
     {id: '8', title: '250 tijolos', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde blanditiis quaerat earum fugit nulla praesentium quae quidem quo animi'}         
 ];
 
-export default class MyActiveAdverts extends Component {
+var data2 = [
+    {id: '1', title: '100 Telhas', description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis omnis corrupti soluta.'},
+    {id: '2', title: 'Meia lata de tinta', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde blanditiis quaerat earum fugit nulla praesentium quae quidem quo animi'}           
+];
 
-    onPressFloating() {
-        alert('ah')
-    }
-
+export default class Adverts extends Component {
     render() {
         return (
             <View styles={defaultViewStyle}>
+                <Text>Aqui o search</Text>
                 <ListView
                     data={data}
                 />
-                <FloatingButton onPress={this.onPressFloating}/>
             </View>
         );
     }

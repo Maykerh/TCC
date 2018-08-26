@@ -4,6 +4,14 @@ import { labelTextColor } from '../assets/styleVariables';
 
 export default class ListItem extends PureComponent {
 
+    formatDescription(text) {
+        if (text.lenght <= 80) {
+            return text;
+        }
+        
+        return text.slice(0, 80) + '...';
+    }
+
     render() {
         return (
             <TouchableHighlight
@@ -16,7 +24,7 @@ export default class ListItem extends PureComponent {
                             {this.props.title}
                         </Text>
                         <Text style={styles.description}>
-                            {this.props.description}
+                            {this.formatDescription(this.props.description)}
                         </Text>
                     </View>
                 </View>
@@ -42,7 +50,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontWeight: 'bold',
-        fontSize: 18
+        fontSize: 18,
+        marginBottom: 5
     },
     description: {
         flex: 1,

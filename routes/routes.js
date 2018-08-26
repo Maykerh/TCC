@@ -3,9 +3,23 @@ import Login from '../containers/login';
 import AdvertData from '../containers/advertData';
 import ContactData from '../containers/contactData';
 import MyAdverts from '../containers/myAdverts';
+import Adverts from '../containers/adverts';
 import { mainColor, btnTextColor } from '../assets/styleVariables';
 
 export default createStackNavigator({
+    Adverts: {
+        screen: Adverts,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Anúncios',
+            headerStyle: {
+                backgroundColor: mainColor
+            },
+            headerTitleStyle: {
+                color: btnTextColor
+            },
+            headerTintColor: btnTextColor
+        })
+    },
     MyAdverts: {
         screen: MyAdverts,
         navigationOptions: ({ navigation }) => ({

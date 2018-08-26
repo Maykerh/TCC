@@ -3,6 +3,8 @@ import MyActiveAdverts from '../containers/myActiveAdverts';
 import MyFinishedAdverts from '../containers/myFinishedAdverts';
 import { mainColor, secondaryColor, btnTextColor } from '../assets/styleVariables';
 
+// TODO: unificar os arquivos MyActiveAdverts e MyFinishedAdverts
+
 export default createMaterialTopTabNavigator(
     {
         MyActiveAdverts: {
