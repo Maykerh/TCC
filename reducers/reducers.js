@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import Advert from './advert';
+import AdvertData from './advertData';
+import AdvertsList from './advertsList';
 import Contact from './contact';
 
 export default combineReducers({
-    Advert,
+    AdvertData,
+    AdvertsList,
     Contact
 });

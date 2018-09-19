@@ -13,3 +13,6 @@ export const HANDLE_CONTACT_CITY = 'handle contact city';
 export const HANDLE_CONTACT_NEIGHBORHOOD = 'handle contact neighborhood';
 export const HANDLE_CONTACT_STREET = 'handle contact street';
 export const HANDLE_CONTACT_NUMBER = 'handle contact number';
+
+/* ADVERTS LIST */
+export const ADVERT_SEARCH = 'advert search';

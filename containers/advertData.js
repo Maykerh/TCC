@@ -6,9 +6,8 @@ import AdvertImages from '../components/advertImages';
 import Btn from '../components/btn';
 import ComboBox from '../components/comboBox';
 import { marginFormElements, defaultViewStyle, labelTextColor } from '../assets/styleVariables';
-import * as actions from '../actions/advertActions';
+import * as actions from '../actions/advertDataActions';
 import { RkTextInput } from 'react-native-ui-kitten';
-import { TextInput } from "../node_modules/react-native-gesture-handler";
 
 
 const categoryOptions = [

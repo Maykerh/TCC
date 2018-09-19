@@ -8,4 +8,4 @@ export default class MyAdverts extends Component {
         <MyAdvertsRoutes/>
     );
   }
-};
+}
