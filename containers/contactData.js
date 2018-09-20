@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, ScrollView, View, Keyboard, KeyboardAvoidingView } from 'react-native';
-import { defaultViewStyle, marginFormElements } from '../assets/styleVariables';
+import { defaultViewStyle } from '../assets/styleVariables';
 import { TextInputMask } from 'react-native-masked-text';
 import { RkTextInput } from 'react-native-ui-kitten';
 import { connect } from 'react-redux';
 import * as actions from '../actions/contactActions';
+import Btn from '../components/btn';
 
 
 class ContactData extends Component {
@@ -115,7 +116,6 @@ class ContactData extends Component {
 };
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         name: state.Contact.name,
         phone: state.Contact.phone,

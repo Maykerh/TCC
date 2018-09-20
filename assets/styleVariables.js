@@ -20,3 +20,4 @@ export const marginFormElements = 15;
 /* Sizes */
 export const btnFontSize = 18;
 export const labelFontSize = 14;
+export const btnHeight = 50;

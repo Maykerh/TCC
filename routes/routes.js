@@ -7,6 +7,19 @@ import AdvertsList from '../containers/advertsList';
 import { mainColor, btnTextColor } from '../assets/styleVariables';
 
 export default createStackNavigator({
+    Login: {
+        screen: Login,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Entrar',
+            headerStyle: {
+                backgroundColor: mainColor
+            },
+            headerTitleStyle: {
+                color: btnTextColor
+            },
+            headerTintColor: btnTextColor
+        })
+    },
     AdvertsList: {
         screen: AdvertsList,
         navigationOptions: ({ navigation }) => ({
@@ -59,13 +72,6 @@ export default createStackNavigator({
             headerTintColor: btnTextColor
         })
     }
-    
-    // Login: {
-    //     screen: Login,
-    //     navigationOptions: ({ navigation }) => ({
-    //         header: null
-    //     })
-    // },
     // Adverts: {
     //     screen: Adverts,
     //     navigationOptions: ({ navigation }) => ({

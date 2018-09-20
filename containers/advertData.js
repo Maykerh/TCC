@@ -9,7 +9,6 @@ import { marginFormElements, defaultViewStyle, labelTextColor } from '../assets/
 import * as actions from '../actions/advertDataActions';
 import { RkTextInput } from 'react-native-ui-kitten';
 
-
 const categoryOptions = [
     { label: 'Madeira', value: 1 },
     { label: 'Cerâmica', value: 2 },

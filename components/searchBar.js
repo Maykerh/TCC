@@ -47,8 +47,8 @@ export default class SearchBar extends Component {
 const styles = StyleSheet.create({
     main: {
         backgroundColor: mainColor,
-        paddingHorizontal: 8,
-        paddingVertical: 8,
+        paddingHorizontal: 6,
+        paddingVertical: 7,
         alignItems: 'center',
         display: 'flex',
         flexDirection: 'row'
@@ -59,19 +59,22 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         paddingRight: 10, 
         paddingLeft: 10,
-        flex: 1
+        flex: 1,
+        borderBottomLeftRadius: 50,
+        borderTopLeftRadius: 50
     },
     input: {
         fontSize: 18,
-        paddingVertical: 6
+        paddingVertical: 3
     },
     searchBtn: {
         backgroundColor: '#FFF',
-        height:48.4,
+        height: 42.2,
         width:48,
         display: 'flex',
-        marginRight: 5,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderBottomRightRadius: 50,
+        borderTopRightRadius: 50
     }
 });

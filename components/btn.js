@@ -2,14 +2,15 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { RkButton  } from 'react-native-ui-kitten';
-import { marginFormElements, btnTextColor, mainColor, btnFontSize } from '../assets/styleVariables'
+import { marginFormElements, btnTextColor, mainColor, btnFontSize, btnHeight } from '../assets/styleVariables'
 
 export default Btn = (props) => {
     return (
         <RkButton 
             rkType={props.type}
             style={{
-                backgroundColor: props.color ? props.color : mainColor               
+                backgroundColor: props.color ? props.color : mainColor,
+                height: btnHeight               
             }}
             full={props.full}
             onPress={props.onPress}
