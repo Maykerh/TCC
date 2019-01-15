@@ -18,7 +18,10 @@ export const HANDLE_CONTACT_NUMBER = 'handle contact number';
 export const ADVERT_SEARCH = 'advert search';
 
 /* LOGIN */
-export const HANDLE_LOGIN_EMAIL = 'handle_login_email'; 
-export const HANDLE_LOGIN_PASSWORD = 'handle_login_password';
-export const HANDLE_LOGIN_EMAIL_VALIDATION = 'handle_login_email_validation'; 
-export const HANDLE_LOGIN_PASSWORD_VALIDATION = 'handle_login_password_validation'; 
+export const HANDLE_LOGIN_EMAIL = 'handle login email'; 
+export const HANDLE_LOGIN_PASSWORD = 'handle login password';
+export const HANDLE_LOGIN_EMAIL_VALIDATION = 'handle login email validation'; 
+export const HANDLE_LOGIN_PASSWORD_VALIDATION = 'handle login password validation'; 
+
+/* ADVERT VIEW DATA */
+export const LOAD_AD_DATA = 'load ad data';

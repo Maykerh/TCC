@@ -4,9 +4,37 @@ import AdvertData from '../containers/advertData';
 import ContactData from '../containers/contactData';
 import MyAdverts from '../containers/myAdverts';
 import AdvertsList from '../containers/advertsList';
+import AdvertViewData from '../containers/advertViewData';
+import Signup from '../containers/signup';
 import { mainColor, btnTextColor } from '../assets/styleVariables';
 
 export default createStackNavigator({
+    Signup: {
+        screen: Signup,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Criar conta',
+            headerStyle: {
+                backgroundColor: mainColor
+            },
+            headerTitleStyle: {
+                color: btnTextColor
+            },
+            headerTintColor: btnTextColor
+        })
+    },
+    AdvertViewData: {
+        screen: AdvertViewData,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Dados do anúncio',
+            headerStyle: {
+                backgroundColor: mainColor
+            },
+            headerTitleStyle: {
+                color: btnTextColor
+            },
+            headerTintColor: btnTextColor
+        })
+    },
     Login: {
         screen: Login,
         navigationOptions: ({ navigation }) => ({
