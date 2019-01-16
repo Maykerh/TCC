@@ -1,72 +1,91 @@
 import React, { Component } from 'react'
 import { defaultViewStyle, marginFormElements, labelTextColor } from '../assets/styleVariables';
-import { View, Text, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, Button, StyleSheet, Alert, TouchableOpacityBase } from 'react-native';
 import { RkTextInput } from 'react-native-ui-kitten';
 import Btn from '../components/btn';
-import * as actions from '../actions/loginActions';
+import * as actions from '../actions/signupActions';
 import { connect } from 'react-redux';
 
-var auth = {
-	email: 'Admin',
-	password: 'admin'
-}
 class Signup extends Component {
 	constructor(props) {
         super(props);
-
-        this.login = this.login.bind(this);
+		console.log(actions)
+        this.signup = this.signup.bind(this);
 	}
 	
-	login() {
-		var {email, password} = this.props;
+	signup() {
+		var {name, email, password} = this.props;
 
-		this.props.setEmailValidation(null);
-		this.props.setPasswordValidation(null);
-
-		if (email == auth.email && password == auth.password) {
-			alert('logado');
-		} else {
-			if (email != auth.email) {
-				this.props.setEmailValidation('error');
-			}
-			
-			if (password != auth.password) {
-				this.props.setPasswordValidation('error');				
-			}
+		if (!this.validateData()) {
+			alert('dados incorretos');
+			return;
 		}
+
+		// Do signup
+
+		alert('Conta criada com sucesso');
+	}
+	
+	validateData() {
+		var {name, email, password} = this.props;
+		var valid = true;
+
+		if (!name || name.length < 3) {
+			this.props.setNameValidation('error');
+			valid = false;
+		} else {
+			this.props.setNameValidation(null);
+		}
+
+		if (!email || email.indexOf('@') == -1) {
+			this.props.setEmailValidation('error');
+			valid = false;
+		} else {
+			this.props.setEmailValidation(null);
+		}
+
+		if (!password || password.length < 5) {
+			this.props.setPasswordValidation('error');
+			valid = false;
+		} else {
+			this.props.setPasswordValidation(null);
+		}
+
+		return valid;
 	}
 
   	render() {
 		return (
 			<View style={Object.assign({}, defaultViewStyle, {})}>
-				<View style={styles.fieldsWrapper}>
-                    <RkTextInput 
-						style={styles.fields}
-						labelStyle={this.props.nameValidation == 'error' ? styles.error : {}}
-						label={'Nome'}
-						value={this.props.password}
-						secureTextEntry={true}
-						onChangeText={this.props.changePassword}
-                    />
-					<RkTextInput 
-						style={styles.fields}
-						labelStyle={this.props.emailValidation == 'error' ? styles.error : {}}
-                        label={'Email'}
-						value={this.props.email}
-						onChangeText={this.props.changeEmail}
-                       
-                    />
-					<RkTextInput 
-						style={styles.fields}
-						labelStyle={this.props.passwordValidation == 'error' ? styles.error : {}}
-						label={'Senha'}
-						value={this.props.password}
-						secureTextEntry={true}
-						onChangeText={this.props.changePassword}
-                    />
-					<View style={styles.fields} >
-                        <Btn onPress={this.login} text={'Criar conta'} type={'xlarge'} />
-                    </View>
+				<View style={styles.content}>
+					<View style={styles.fieldsWrapper}>
+						<RkTextInput 
+							style={styles.fields}
+							labelStyle={this.props.nameValidation == 'error' ? styles.error : {}}
+							label={'Nome'}
+							value={this.props.name}
+							onChangeText={this.props.changeName}
+						/>
+						<RkTextInput 
+							style={styles.fields}
+							labelStyle={this.props.emailValidation == 'error' ? styles.error : {}}
+							label={'Email'}
+							value={this.props.email}
+							onChangeText={this.props.changeEmail}
+						
+						/>
+						<RkTextInput 
+							style={styles.fields}
+							labelStyle={this.props.passwordValidation == 'error' ? styles.error : {}}
+							label={'Senha'}
+							value={this.props.password}
+							secureTextEntry={true}
+							onChangeText={this.props.changePassword}
+						/>
+						<View style={styles.createAccBtn} >
+							<Btn onPress={this.signup} text={'Criar conta'} type={'xlarge'} />
+						</View>
+					</View>
 				</View>
                 <View style={styles.bottomTexts}>
                     <View style={styles.terms}>
@@ -75,19 +94,20 @@ class Signup extends Component {
                                 Criando uma conta 
                             </Text>
                             <Text style={styles.text}>
-                                você concorda com nossos
+                                {"você concorda com nossos  "}
+								<Text style={styles.linkText}>
+                            		{"Termos"}
+                        		</Text>
                             </Text>
                         </View>
-                        <Text style={styles.linkText}>
-                            Termos
-                        </Text>
+                        
                     </View>
-                    <View style={styles.terms}>
+                    <View style={styles.hasAccText}>
                         <Text style={styles.text}>
-                            Já possui uma conta? 
-                        </Text>
-                        <Text style={styles.linkText}>
-                            Entrar
+                            {"Já possui uma conta?  "}
+							<Text style={styles.linkText}>
+								{"Entrar"}
+							</Text>
                         </Text>
                     </View>
                 </View>
@@ -98,39 +118,48 @@ class Signup extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        // email: state.Login.email,
-		// password: state.Login.password,
-		// emailValidation: state.Login.emailValidation,
-        // passwordValidation: state.Login.passwordValidation,
+		name: state.Signup.name,
+        email: state.Signup.email,
+		password: state.Signup.password,
+		nameValidation: state.Signup.nameValidation,
+		emailValidation: state.Signup.emailValidation,
+        passwordValidation: state.Signup.passwordValidation,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // changeEmail: (email) => dispatch(actions.changeEmail(email)),
-		// changePassword: (password) => dispatch(actions.changePassword(password)),
-		// setEmailValidation: (emailValidation) => dispatch(actions.setEmailValidation(emailValidation)),
-        // setPasswordValidation: (passwordValidation) => dispatch(actions.setPasswordValidation(passwordValidation))
+		changeName: (name) => dispatch(actions.changeName(name)),
+        changeEmail: (email) => dispatch(actions.changeEmail(email)),
+		changePassword: (password) => dispatch(actions.changePassword(password)),
+		setNameValidation: (nameValidation) => dispatch(actions.setNameValidation(nameValidation)),
+		setEmailValidation: (emailValidation) => dispatch(actions.setEmailValidation(emailValidation)),
+        setPasswordValidation: (passwordValidation) => dispatch(actions.setPasswordValidation(passwordValidation))
     }
 };
 
 const styles = StyleSheet.create({
-    fieldsWrapper: {
+    content: {
 	   justifyContent: 'center',
 	   display: 'flex',
 	   flexDirection: 'column',
        flex: 3,
-       backgroundColor: 'red',
-       marginTop: 50
+       marginTop: 30
 	},
-	fields: {
-		marginTop: marginFormElements
+	fieldsWrapper: {
+		justifyContent: 'center',
+		display: 'flex',
+		flexDirection: 'column',
+		flex: 3,
+		marginTop: 30
+	 },
+	createAccBtn: {
+		marginTop: 30
 	},
 	linkText: {
-		marginTop: 10,
-		marginLeft: 5,
 		fontSize: 15,
-		color: /*labelTextColor*/ 'yellow',
+		fontWeight: 'bold',
+		color: '#111111',
 		textDecorationLine: 'underline'
 	},
 	error: {
@@ -138,15 +167,19 @@ const styles = StyleSheet.create({
     },
     terms: {
         flexDirection: 'row',
-        textAlign: 'center',
-        justifyContent: 'center'
-    },
+		justifyContent: 'center',
+	},
+	hasAccText: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		marginTop: 15
+	},
     bottomTexts: {
         justifyContent: 'flex-start',
 	    display: 'flex',
         flexDirection: 'column',
-        flex: 2,
-        backgroundColor: 'green'
+		flex: 2,
+		marginTop: 30
     }
 });
 
