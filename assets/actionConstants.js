@@ -21,7 +21,15 @@ export const ADVERT_SEARCH = 'advert search';
 export const HANDLE_LOGIN_EMAIL = 'handle login email'; 
 export const HANDLE_LOGIN_PASSWORD = 'handle login password';
 export const HANDLE_LOGIN_EMAIL_VALIDATION = 'handle login email validation'; 
-export const HANDLE_LOGIN_PASSWORD_VALIDATION = 'handle login password validation'; 
+export const HANDLE_LOGIN_PASSWORD_VALIDATION = 'handle login password validation';
+
+/* SIGNUP */
+export const HANDLE_SIGNUP_NAME = 'handle signup name'; 
+export const HANDLE_SIGNUP_EMAIL = 'handle signup email'; 
+export const HANDLE_SIGNUP_PASSWORD = 'handle signup password';
+export const HANDLE_SIGNUP_NAME_VALIDATION = 'handle signup name validation'; 
+export const HANDLE_SIGNUP_EMAIL_VALIDATION = 'handle signup email validation'; 
+export const HANDLE_SIGNUP_PASSWORD_VALIDATION = 'handle signup password validation';
 
 /* ADVERT VIEW DATA */
 export const LOAD_AD_DATA = 'load ad data';
