@@ -3,45 +3,30 @@ import { Text, View, StyleSheet, Image, TouchableHighlight } from 'react-native'
 import { RkText, RkTextInput } from 'react-native-ui-kitten';
 import { mainColor, inactiveTextColor } from '../assets/styleVariables';
 
-export default class SearchBar extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            searchText: ''
-        }
-    }
-    render() {
-        return (
-            <View style={styles.main}>
-                <RkTextInput 
-                    autoCapitalize='none'
-                    autoCorrect={false}
-                    rkType='row'
-                    placeholder='Busca'
-                    inputStyle={styles.input}
-                    style={styles.searchArea}
-                    onChange={ 
-                        (text) => {
-                            this.setState({
-                                searchText: text.nativeEvent.text
-                            });
-                        }
-                    }
-                    value={this.state.searchText}
-                />  
-                <TouchableHighlight
-                    style={styles.searchBtn}
-                    underlayColor={inactiveTextColor}
-                    onPress={() => {this.props.onSearch(this.state.searchText)}}>
-                    <Image
-                        style={{width: 32, height: 32}} 
-                        source={require('../assets/images/search.png')}
-                    />
-                </TouchableHighlight>
-            </View>
-        )
-  } 
+export default (props) => {
+    return (
+        <View style={styles.main}>
+            <RkTextInput 
+                autoCapitalize='none'
+                autoCorrect={false}
+                rkType='row'
+                placeholder='Busca'
+                inputStyle={styles.input}
+                style={styles.searchArea}
+                onChange={ (text) => { props.onChange(text.nativeEvent.text) }}
+                value={props.searchText}
+            />  
+            <TouchableHighlight
+                style={styles.searchBtn}
+                underlayColor={inactiveTextColor}
+                onPress={() => { props.onSearch(props.searchText)}}>
+                <Image
+                    style={{width: 32, height: 32}} 
+                    source={require('../assets/images/search.png')}
+                />
+            </TouchableHighlight>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({

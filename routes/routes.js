@@ -9,6 +9,19 @@ import Signup from '../containers/signup';
 import { mainColor, btnTextColor } from '../assets/styleVariables';
 
 export default createStackNavigator({
+    AdvertsList: {
+        screen: AdvertsList,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Anúncios',
+            headerStyle: {
+                backgroundColor: mainColor
+            },
+            headerTitleStyle: {
+                color: btnTextColor
+            },
+            headerTintColor: btnTextColor
+        })
+    },
     Signup: {
         screen: Signup,
         navigationOptions: ({ navigation }) => ({
@@ -39,19 +52,6 @@ export default createStackNavigator({
         screen: Login,
         navigationOptions: ({ navigation }) => ({
             title: 'Entrar',
-            headerStyle: {
-                backgroundColor: mainColor
-            },
-            headerTitleStyle: {
-                color: btnTextColor
-            },
-            headerTintColor: btnTextColor
-        })
-    },
-    AdvertsList: {
-        screen: AdvertsList,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Anúncios',
             headerStyle: {
                 backgroundColor: mainColor
             },

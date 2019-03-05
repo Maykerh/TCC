@@ -16,6 +16,7 @@ export const HANDLE_CONTACT_NUMBER = 'handle contact number';
 
 /* ADVERTS LIST */
 export const ADVERT_SEARCH = 'advert search';
+export const CHANGE_FILTERS = 'change filters';
 
 /* LOGIN */
 export const HANDLE_LOGIN_EMAIL = 'handle login email'; 
