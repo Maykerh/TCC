@@ -5,10 +5,37 @@ import ContactData from '../containers/contactData';
 import MyAdverts from '../containers/myAdverts';
 import AdvertsList from '../containers/advertsList';
 import AdvertViewData from '../containers/advertViewData';
+import Chat from '../containers/chat';
+import ChatList from '../containers/chatList';
 import Signup from '../containers/signup';
 import { mainColor, btnTextColor } from '../assets/styleVariables';
 
 export default createStackNavigator({
+    chatList: {
+        screen: ChatList,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Minhas conversas',
+            headerStyle: {
+                backgroundColor: mainColor
+            },
+            headerTitleStyle: {
+                color: btnTextColor
+            },
+            headerTintColor: btnTextColor
+        })
+    },
+    Chat: {
+        screen: Chat,
+        navigationOptions: ({ navigation }) => ({
+            headerStyle: {
+                backgroundColor: mainColor
+            },
+            headerTitleStyle: {
+                color: btnTextColor
+            },
+            headerTintColor: btnTextColor
+        })
+    },
     AdvertsList: {
         screen: AdvertsList,
         navigationOptions: ({ navigation }) => ({

@@ -3,9 +3,8 @@ import { StyleSheet,TouchableHighlight, Text, View, Image } from 'react-native';
 import { labelTextColor } from '../assets/styleVariables';
 
 export default class ListItem extends PureComponent {
-
     formatDescription(text) {
-        if (text.lenght <= 80) {
+        if (text.length <= 80) {
             return text;
         }
         
@@ -14,9 +13,7 @@ export default class ListItem extends PureComponent {
 
     render() {
         return (
-            <TouchableHighlight
-                onPress={(a) => {console.log('escolhi => ' + a)}}
-            >
+            <TouchableHighlight onPress={() => { this.props.onClickItem(this.props.id) }}>
                 <View style={styles.row}>
                     <Image style={styles.image} source={require('../assets/images/no_image.png')}/>
                     <View style={styles.text}>
