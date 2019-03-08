@@ -1,17 +1,30 @@
 import { createStackNavigator } from 'react-navigation';
 import Login from '../containers/login';
 import AdvertData from '../containers/advertData';
-import ContactData from '../containers/contactData';
 import MyAdverts from '../containers/myAdverts';
 import AdvertsList from '../containers/advertsList';
 import AdvertViewData from '../containers/advertViewData';
 import Chat from '../containers/chat';
 import ChatList from '../containers/chatList';
+import MyAccount from '../containers/myAccount';
 import Signup from '../containers/signup';
 import { mainColor, btnTextColor } from '../assets/styleVariables';
 
 export default createStackNavigator({
-    chatList: {
+    MyAccount: {
+        screen: MyAccount,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Minha conta',
+            headerStyle: {
+                backgroundColor: mainColor
+            },
+            headerTitleStyle: {
+                color: btnTextColor
+            },
+            headerTintColor: btnTextColor
+        })
+    },
+    ChatList: {
         screen: ChatList,
         navigationOptions: ({ navigation }) => ({
             title: 'Minhas conversas',
@@ -105,19 +118,6 @@ export default createStackNavigator({
         screen: AdvertData,
         navigationOptions: ({ navigation }) => ({
             title: 'Dados do anúncio',
-            headerStyle: {
-                backgroundColor: mainColor
-            },
-            headerTitleStyle: {
-                color: btnTextColor
-            },
-            headerTintColor: btnTextColor
-        })
-    },
-    ContactData: {
-        screen: ContactData,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Dados de contato',
             headerStyle: {
                 backgroundColor: mainColor
             },

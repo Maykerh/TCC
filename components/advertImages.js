@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { View, Image, TouchableOpacity, StyleSheet, CameraRoll, PermissionsAndroid } from 'react-native';
 import { Permissions, ImagePicker } from 'expo';

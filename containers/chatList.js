@@ -1,8 +1,5 @@
 import React from 'react';
-import { View, Text, Platform } from 'react-native';
-import { GiftedChat, Bubble, Send } from 'react-native-gifted-chat';
-import KeyboardSpacer from 'react-native-keyboard-spacer';
-import { mainColor, btnTextColor } from '../assets/styleVariables';
+import { View } from 'react-native';
 import ListView from '../components/listView';
 
 var fakeData = [
