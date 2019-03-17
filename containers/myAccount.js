@@ -42,8 +42,7 @@ class MyAccount extends Component {
                 keyboardVerticalOffset={80}
             > 
                 <ScrollView style={{backgroundColor: '#FFF'}} scrollEnabled keyboardShouldPersistTaps={'handled'}>
-                    <View style={styles.header}>
-                    </View>
+                    <View style={styles.header}></View>
                     <Image style={styles.headerImg} source={require('../assets/images/foto.png')} />
                     <View style={[defaultViewStyle, {zIndex: 0}]}>
                         <RkTextInput 
@@ -53,7 +52,7 @@ class MyAccount extends Component {
                             onChangeText={this.props.changeName}
                         />
                         <TextInputMask
-                            type={'cel-phone'}
+                            type={'Custom'}
                             style={styles.input}
                             customTextInput={RkTextInput}
                             value={props.phone}
@@ -62,6 +61,12 @@ class MyAccount extends Component {
                                 label: 'Telefone',
                                 keyboardType: 'numeric',
                             }}
+                        />
+                        <RkTextInput 
+                            style={styles.input} 
+                            label={'Email'}
+                            value={props.email}
+                            onChangeText={this.props.changeEmail}
                         />
                         <TextInputMask
                             type={'custom'}
@@ -141,6 +146,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
     return {
         name: state.MyAccount.name,
+        email: state.MyAccount.email,
         phone: state.MyAccount.phone,
         zip: state.MyAccount.zip,
         state: state.MyAccount.state,
@@ -154,6 +160,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         changeName: (name) => dispatch(actions.changeName(name)),
+        changeName: (email) => dispatch(actions.changeEmail(email)),
         changePhone: (phone) => dispatch(actions.changePhone(phone)),
         changeZip: (zip) => dispatch(actions.changeZip(zip)),
         changeState: (state) => dispatch(actions.changeState(state)),

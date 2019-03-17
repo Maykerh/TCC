@@ -10,7 +10,9 @@ export default Btn = (props) => {
             rkType={props.type}
             style={{
                 backgroundColor: props.color ? props.color : mainColor,
-                height: btnHeight               
+                height: btnHeight,
+                borderWidth: props.borderColor ? 2 : null,
+                borderColor: props.borderColor ? props.borderColor : null,           
             }}
             full={props.full}
             onPress={props.onPress}

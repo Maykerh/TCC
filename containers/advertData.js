@@ -8,6 +8,7 @@ import ComboBox from '../components/comboBox';
 import { marginFormElements, defaultViewStyle, labelTextColor } from '../assets/styleVariables';
 import * as actions from '../actions/advertDataActions';
 import { RkTextInput } from 'react-native-ui-kitten';
+import { navigateAndReset } from '../helpers/navigationHelper';
 
 const categoryOptions = [
     { label: 'Madeira', value: 1 },
@@ -25,9 +26,13 @@ class AdvertData extends Component {
     }
     
     validateData() {
-        // validar os dados antes de trocar de tela
+        var validation = true;
+        
+        // TODO: validação
 
-        this.props.navigation.navigate('ContactData');
+        if (validation) {
+            navigateAndReset(this.props, 'MyAdverts');
+        }
     }
 
     render() {
@@ -70,8 +75,8 @@ class AdvertData extends Component {
                 <View style={{marginTop: marginFormElements}}>
                     <Btn 
                         onPress={this.validateData}
-                        text={'Avançar'} 
-                        type={'xlarge'} 
+                        text={'Finalizar'} 
+                        type={'xlarge'}
                     />
                 </View>
             </View>
@@ -81,10 +86,10 @@ class AdvertData extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        title: state.Advert.title,
-        description: state.Advert.description,
-        category: state.Advert.category,
-        imageb64: state.Advert.imageb64,
+        title: state.AdvertData.title,
+        description: state.AdvertData.description,
+        category: state.AdvertData.category,
+        imageb64: state.AdvertData.imageb64,
     }
 };
 

@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import { defaultViewStyle, marginFormElements, labelTextColor } from '../assets/styleVariables';
-import { View, Text, Button, StyleSheet, Alert, TouchableOpacityBase } from 'react-native';
+import { defaultViewStyle, } from '../assets/styleVariables';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { RkTextInput } from 'react-native-ui-kitten';
 import Btn from '../components/btn';
 import * as actions from '../actions/signupActions';
 import { connect } from 'react-redux';
+import { navigateAndReset } from '../helpers/navigationHelper';
 
 class Signup extends Component {
 	constructor(props) {
         super(props);
-		console.log(actions)
+
         this.signup = this.signup.bind(this);
 	}
 	
@@ -24,6 +25,8 @@ class Signup extends Component {
 		// Do signup
 
 		alert('Conta criada com sucesso');
+
+		navigateAndReset(this.props, 'AdvertsList');
 	}
 	
 	validateData() {
@@ -89,26 +92,30 @@ class Signup extends Component {
 				</View>
                 <View style={styles.bottomTexts}>
                     <View style={styles.terms}>
-                        <View style={{alignItems: 'center'}}>
-                            <Text>
-                                Criando uma conta 
-                            </Text>
-                            <Text style={styles.text}>
-                                {"você concorda com nossos  "}
-								<Text style={styles.linkText}>
-                            		{"Termos"}
-                        		</Text>
-                            </Text>
-                        </View>
+						<TouchableOpacity onPress={ () => alert('termos') }>
+                        	<View style={{alignItems: 'center'}}>
+								<Text>
+									Criando uma conta 
+								</Text>
+								<Text style={styles.text}>
+									{"você concorda com nossos  "}
+									<Text style={styles.linkText}>
+										{"Termos"}
+									</Text>
+								</Text>
+                        	</View>
+						</TouchableOpacity>
                         
                     </View>
                     <View style={styles.hasAccText}>
-                        <Text style={styles.text}>
-                            {"Já possui uma conta?  "}
-							<Text style={styles.linkText}>
-								{"Entrar"}
-							</Text>
-                        </Text>
+						<TouchableOpacity onPress={ () => this.props.navigation.navigate('Login') }>
+                        	<Text style={styles.text}>
+								{"Já possui uma conta?  "}
+								<Text style={styles.linkText}>
+									{"Entrar"}
+								</Text>
+                        	</Text>
+						</TouchableOpacity>
                     </View>
                 </View>
 			</View>

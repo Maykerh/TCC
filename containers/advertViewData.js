@@ -57,7 +57,7 @@ class AdvertViewData extends Component {
                 </ScrollView>
                 <View style={{margin: 10}}>
                     <Btn 
-                        onPress={this.validateData}
+                        onPress={() => this.props.navigation.navigate('Chat')}
                         text={'Enviar mensagem'} 
                         type={'xlarge'} 
                     />
@@ -66,7 +66,6 @@ class AdvertViewData extends Component {
         )
     }
 };
-
 
 const styles = StyleSheet.create({
     subTitles: {

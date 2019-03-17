@@ -10,8 +10,14 @@ var fakeData = [
 ];
 
 class ChatList extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.handleChatOpen = this.handleChatOpen.bind(this);
+    }
+
     handleChatOpen(item) {
-        console.log('cliquei no -> ' + item);
+        this.props.navigation.navigate('Chat');
     }
 
     render() {

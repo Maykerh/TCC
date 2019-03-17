@@ -2,6 +2,7 @@ import * as actionType from '../assets/actionConstants';
 
 const initialState = {
     name: '',
+    email: '',
     phone: '',
     zip: '',
     state: '',
@@ -15,6 +16,8 @@ export default (state = initialState, action) => {
     switch(action.type) {
         case actionType.HANDLE_CONTACT_NAME:
             return Object.assign({}, state, {name: action.payload});
+        case actionType.HANDLE_CONTACT_EMAIL:
+            return Object.assign({}, state, {email: action.payload});
         case actionType.HANDLE_CONTACT_PHONE:
             return Object.assign({}, state, {phone: action.payload});
         case actionType.HANDLE_CONTACT_ZIP:

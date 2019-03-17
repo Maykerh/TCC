@@ -6,6 +6,14 @@ export function changeName(name) {
         payload: name
     }
 }
+
+export function changeEmail(email) {
+    return {
+        type: actionType.HANDLE_CONTACT_EMAIL,
+        payload: email
+    }
+}
+
 export function changePhone(phone) {
     return {
         type: actionType.HANDLE_CONTACT_PHONE,

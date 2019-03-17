@@ -47,6 +47,7 @@ class AdvertsList extends React.Component {
         super(props);
 
         this.handleSearch = this.handleSearch.bind(this);
+        this.handleAdvertOpen = this.handleAdvertOpen.bind(this);
 
         this.state = {
             filterModalOpened: false
@@ -84,6 +85,10 @@ class AdvertsList extends React.Component {
         this.props.search(this.props.searchFilters);
     }
 
+    handleAdvertOpen(item) {
+        this.props.navigation.navigate('AdvertViewData');
+    }
+
     render() {
         return (
             <View styles={defaultViewStyle}>
@@ -93,6 +98,7 @@ class AdvertsList extends React.Component {
                     searchText={this.props.searchFilters.text}
                 />
                 <ListView
+                    onClickItem={(item) => this.handleAdvertOpen(item)}
                     data={this.props.advertsList}
                 />
                 <Modal

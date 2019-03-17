@@ -6,6 +6,7 @@ export const HANDLE_AD_IMAGE = 'handle ad image';
 
 /* CONTACT DATA*/
 export const HANDLE_CONTACT_NAME = 'handle contact name';
+export const HANDLE_CONTACT_EMAIL = 'handle contact email';
 export const HANDLE_CONTACT_PHONE = 'handle contact phone';
 export const HANDLE_CONTACT_ZIP = 'handle contact zip';
 export const HANDLE_CONTACT_STATE = 'handle contact state';

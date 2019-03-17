@@ -7,7 +7,7 @@ export const defaultViewStyle = {
 }
 
 /* Colors */
-export const mainColor = '#ff8700';
+export const mainColor = '#CA5D27';
 export const secondaryColor = '#d97300';
 export const btnTextColor = '#fff';
 export const labelTextColor = '#6d6d6d';
