@@ -5,12 +5,9 @@ import { RkTextInput } from 'react-native-ui-kitten';
 import Btn from '../components/btn';
 import * as actions from '../actions/loginActions';
 import { connect } from 'react-redux';
-import { navigateAndReset } from '../helpers/navigationHelper';
+import Loading from '../components/loading';
+import firebase from 'firebase';
 
-var auth = {
-	email: 'Admin',
-	password: 'admin'
-}
 class Login extends Component {
 	constructor(props) {
         super(props);
@@ -19,33 +16,42 @@ class Login extends Component {
 	}
 	
 	login() {
+		var validate = true;
 		var { email, password, navigation } = this.props;
 
 		this.props.setEmailValidation(null);
 		this.props.setPasswordValidation(null);
 
-		if (email == auth.email && password == auth.password) {
-			if (navigation.getParam('goToAdRegister')) {
-				navigation.setParam('goToAdRegister', false);
-				navigateAndReset(this.props, 'AdvertData');
-			} else {
-				navigateAndReset(this.props, 'AdvertsList');
-			}
-		} else {
-			if (email != auth.email) {
-				this.props.setEmailValidation('error');
-			}
-			
-			if (password != auth.password) {
-				this.props.setPasswordValidation('error');				
-			}
+		if (!email || email === '') {
+			validate = false;
+			this.props.setEmailValidation('error');
+		}
+		
+		if (!password || password === '') {
+			validate = false;
+			this.props.setPasswordValidation('error');				
+		}
+
+		if (validate) {
+			this.props.login(email, password, navigation);
 		}
 	}
 
-  	render() {	
+  	render() {
+		var { loginError, isLoading } = this.props;
+
+		if (isLoading) {
+			return <Loading/>;
+		}
+
 		return (
 			<View style={Object.assign({}, defaultViewStyle, {})}>
 				<View style={styles.fieldsWrapper}>
+					<View style={{ display: loginError ? 'flex' : 'none'}}>
+						<Text style={{ color: 'red' }}>
+							Usuário ou senha incorretos
+						</Text>
+					</View>
 					<RkTextInput 
 						style={styles.fields}
 						labelStyle={this.props.emailValidation == 'error' ? styles.error : {}}
@@ -94,8 +100,10 @@ const mapStateToProps = (state) => {
     return {
         email: state.Login.email,
 		password: state.Login.password,
+		loginError: state.Login.loginError,
 		emailValidation: state.Login.emailValidation,
-        passwordValidation: state.Login.passwordValidation,
+		passwordValidation: state.Login.passwordValidation,
+		isLoading: state.LoadingState.isLoading
     }
 }
 
@@ -103,6 +111,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         changeEmail: (email) => dispatch(actions.changeEmail(email)),
 		changePassword: (password) => dispatch(actions.changePassword(password)),
+		login: (email, password, navigation) => dispatch(actions.login(email, password, navigation)),
 		setEmailValidation: (emailValidation) => dispatch(actions.setEmailValidation(emailValidation)),
         setPasswordValidation: (passwordValidation) => dispatch(actions.setPasswordValidation(passwordValidation))
     }

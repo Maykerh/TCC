@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { defaultViewStyle, } from '../assets/styleVariables';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { RkTextInput } from 'react-native-ui-kitten';
 import Btn from '../components/btn';
 import * as actions from '../actions/signupActions';
 import { connect } from 'react-redux';
-import { navigateAndReset } from '../helpers/navigationHelper';
+import Loading from '../components/loading';
 
 class Signup extends Component {
 	constructor(props) {
@@ -22,11 +22,7 @@ class Signup extends Component {
 			return;
 		}
 
-		// Do signup
-
-		alert('Conta criada com sucesso');
-
-		navigateAndReset(this.props, 'AdvertsList');
+		this.props.createNewUser(name, email, password, this.props.navigation);
 	}
 	
 	validateData() {
@@ -58,6 +54,10 @@ class Signup extends Component {
 	}
 
   	render() {
+		if (this.props.isLoading) {
+			return <Loading/>;
+		}
+
 		return (
 			<View style={Object.assign({}, defaultViewStyle, {})}>
 				<View style={styles.content}>
@@ -130,7 +130,8 @@ const mapStateToProps = (state) => {
 		password: state.Signup.password,
 		nameValidation: state.Signup.nameValidation,
 		emailValidation: state.Signup.emailValidation,
-        passwordValidation: state.Signup.passwordValidation,
+		passwordValidation: state.Signup.passwordValidation,
+		isLoading: state.LoadingState.isLoading
     }
 }
 
@@ -139,6 +140,7 @@ const mapDispatchToProps = (dispatch) => {
 		changeName: (name) => dispatch(actions.changeName(name)),
         changeEmail: (email) => dispatch(actions.changeEmail(email)),
 		changePassword: (password) => dispatch(actions.changePassword(password)),
+		createNewUser: (name, email, password, props) => dispatch(actions.createNewUser(name, email, password, props)),
 		setNameValidation: (nameValidation) => dispatch(actions.setNameValidation(nameValidation)),
 		setEmailValidation: (emailValidation) => dispatch(actions.setEmailValidation(emailValidation)),
         setPasswordValidation: (passwordValidation) => dispatch(actions.setPasswordValidation(passwordValidation))

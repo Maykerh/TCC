@@ -1,3 +1,6 @@
+/* GLOBAL */
+export const IS_LOADING = 'is loading';
+
 /* AD DATA */
 export const HANDLE_AD_TITLE = 'handle ad title';
 export const HANDLE_AD_DESCRIPTION = 'handle ad description';
@@ -24,6 +27,7 @@ export const HANDLE_LOGIN_EMAIL = 'handle login email';
 export const HANDLE_LOGIN_PASSWORD = 'handle login password';
 export const HANDLE_LOGIN_EMAIL_VALIDATION = 'handle login email validation'; 
 export const HANDLE_LOGIN_PASSWORD_VALIDATION = 'handle login password validation';
+export const HANDLE_LOGIN_ERROR = 'handle login error';
 
 /* SIGNUP */
 export const HANDLE_SIGNUP_NAME = 'handle signup name'; 

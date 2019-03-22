@@ -1,4 +1,28 @@
 import * as actionType from '../assets/actionConstants.js';
+import firebase from 'firebase';
+import { navigateAndReset } from '../helpers/navigationHelper';
+
+export function login(email, password, navigation) {
+    return (dispatch) => {
+        dispatch({ type: actionType.IS_LOADING, payload: true });
+
+        firebase.auth()
+            .signInWithEmailAndPassword(email, password.toString())
+            .then(() => {
+                if (navigation.getParam('goToAdRegister')) {
+                    navigation.setParam('goToAdRegister', false);
+                    
+                    navigateAndReset(navigation, 'AdvertData');
+                } else {
+                    navigateAndReset(navigation, 'AdvertsList');
+                }
+            })
+            .catch(function(error) {
+                dispatch({ type: actionType.HANDLE_LOGIN_ERROR, payload: true });
+                dispatch({ type: actionType.IS_LOADING, payload: false });
+            });
+    }
+}
 
 export function changeEmail(email) {
     return {

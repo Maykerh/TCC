@@ -7,6 +7,7 @@ import { marginFormElements, defaultViewStyle, btnTextColor, mainColor } from '.
 import * as actions from '../actions/advertsListActions';
 import Modal from 'react-native-modalbox';
 import ComboBox from '../components/comboBox';
+import firebase from 'firebase';
 
 const styles = StyleSheet.create({
     filterBtn: {
@@ -78,10 +79,6 @@ class AdvertsList extends React.Component {
 
     handleSearch() {
         this.setState({ filterModalOpened: false });
-
-        console.log('vai searchar')
-        console.log(this.props.searchFilters)
-
         this.props.search(this.props.searchFilters);
     }
 

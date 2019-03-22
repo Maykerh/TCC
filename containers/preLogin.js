@@ -47,14 +47,14 @@ class PreLogin extends React.Component {
                         borderColor={mainColor}
                         text={'Quero doar'}
                         type={'xlarge'}
-                        onPress={() => { navigateAndReset(this.props, 'Login', { goToAdRegister: true }); }}
+                        onPress={() => { navigateAndReset(this.props.navigation, 'Login', { goToAdRegister: true }); }}
                     />
                 </View>
                 <View style={{ marginTop: 20 }}>
                     <Btn
                         text={'Quero doações'}
                         type={'xlarge'}
-                        onPress={ () => { navigateAndReset(this.props, 'AdvertsList') } }
+                        onPress={ () => { navigateAndReset(this.props.navigation, 'AdvertsList') } }
                     />
                 </View>
             </View>

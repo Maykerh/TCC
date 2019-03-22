@@ -1,10 +1,11 @@
 import * as actionType from '../assets/actionConstants';
 
 const initialState = {
-    email: '',
-    password: '',
+    email: 'teste@teste.com',
+    password: '123456',
     emailValidation: null,
-    passwordValidation: null
+    passwordValidation: null,
+    loginError: false
 }
 
 export default (state = initialState, action) => {
@@ -17,6 +18,8 @@ export default (state = initialState, action) => {
             return Object.assign({}, state, { emailValidation: action.payload });
         case actionType.HANDLE_LOGIN_PASSWORD_VALIDATION: 
             return Object.assign({}, state, { passwordValidation: action.payload});
+        case actionType.HANDLE_LOGIN_ERROR:
+            return Object.assign({}, state, { loginError: action.payload});
         default:
             return state;
     }

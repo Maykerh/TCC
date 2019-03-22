@@ -13,6 +13,35 @@ import Signup from '../containers/signup';
 import { mainColor, btnTextColor } from '../assets/styleVariables';
 
 export default createStackNavigator({
+    Login: {
+        screen: Login,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Entrar',
+            headerStyle: {
+                backgroundColor: mainColor
+            },
+            headerTitleStyle: {
+                color: btnTextColor
+            },
+            headerTintColor: btnTextColor
+        })
+    },
+    Signup: {
+        screen: Signup,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Criar conta',
+            headerStyle: {
+                backgroundColor: mainColor
+            },
+            headerTitleStyle: {
+                color: btnTextColor
+            },
+            headerTintColor: btnTextColor
+        })
+    },
+    PreLogin: {
+        screen: PreLogin
+    },
     AdvertsList: {
         screen: AdvertsList,
         navigationOptions: ({ navigation }) => ({
@@ -30,19 +59,6 @@ export default createStackNavigator({
         screen: ChatList,
         navigationOptions: ({ navigation }) => ({
             title: 'Minhas conversas',
-            headerStyle: {
-                backgroundColor: mainColor
-            },
-            headerTitleStyle: {
-                color: btnTextColor
-            },
-            headerTintColor: btnTextColor
-        })
-    },
-    Signup: {
-        screen: Signup,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Criar conta',
             headerStyle: {
                 backgroundColor: mainColor
             },
@@ -77,22 +93,6 @@ export default createStackNavigator({
             },
             headerTintColor: btnTextColor
         })
-    },
-    Login: {
-        screen: Login,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Entrar',
-            headerStyle: {
-                backgroundColor: mainColor
-            },
-            headerTitleStyle: {
-                color: btnTextColor
-            },
-            headerTintColor: btnTextColor
-        })
-    },
-    PreLogin: {
-        screen: PreLogin
     },
     PasswordRecovery: {
         screen: PasswordRecovery,

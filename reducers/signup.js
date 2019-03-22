@@ -1,9 +1,9 @@
 import * as actionType from '../assets/actionConstants';
 
 const initialState = {
-    name: '',
-    email: '',
-    password: '',
+    name: 'Mayke',
+    email: 'teste@teste.com',
+    password: '123456',
     nameValidation: null,
     emailValidation: null,
     passwordValidation: null

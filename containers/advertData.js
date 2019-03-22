@@ -31,7 +31,7 @@ class AdvertData extends Component {
         // TODO: validação
 
         if (validation) {
-            navigateAndReset(this.props, 'MyAdverts');
+            navigateAndReset(this.props.navigation, 'MyAdverts');
         }
     }
 
