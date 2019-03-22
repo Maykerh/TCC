@@ -6,20 +6,11 @@ import Routes from './routes/routes';
 import reducers from './reducers/reducers';
 import ReduxThunk from 'redux-thunk';
 import firebase from 'firebase';
+import databaseConfig from './databaseConfig';
 
 export default class App extends Component {
-
   	componentWillMount() {
-		var config = {
-	  		apiKey: "AIzaSyAusAerJaqCO0DuuiwuNyezuINr-gZf78w",
-	  		authDomain: "app-tcc-708aa.firebaseapp.com",
-	  		databaseURL: "https://app-tcc-708aa.firebaseio.com",
-	  		projectId: "app-tcc-708aa",
-	  		storageBucket: "app-tcc-708aa.appspot.com",
-	  		messagingSenderId: "271544584051"
-		};
-
-		firebase.initializeApp(config);
+		firebase.initializeApp(databaseConfig);
   	}
   
   	render() {
