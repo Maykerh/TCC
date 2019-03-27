@@ -1,4 +1,6 @@
 import * as actionType from '../assets/actionConstants.js';
+import firebase from 'firebase';
+import Loading from '../components/loading';
 
 var fakeData = [
     {id: '1', category: 'Cerâmica',     city: 'Joinville',      title: '3 Caixas de azulejo',   description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore, a facilis fugit, quia repudiandae ab id, ad asperiores in at nisi quo nostrum. Quod doloribus optio blanditiis, architecto modi consequatur.'},
@@ -11,9 +13,41 @@ var fakeData = [
     {id: '8', category: 'Alvenaria',    city: 'Jaraguá do sul', title: '250 tijolos',           description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde blanditiis quaerat earum fugit nulla praesentium quae quidem quo animi'}         
 ];
 
+export function getActiveAds() {
+
+}
+
 export function search(searchFilters) {
     var advertsList = fakeData;
     var filteredList = advertsList;
+
+    // var uid = firebase.auth().currentUser ? firebase.auth().currentUser.uid : 'LTAFmRqYYLgw6v69yaXIaufLpZ62';
+
+
+    return (dispatch) => {
+        dispatch({ type: actionType.IS_LOADING, payload: true });
+
+        // ref.child('users').orderByChild('name').equalTo('John Doe').on("value", function(snapshot) {
+        //     console.log(snapshot.val());
+        //     snapshot.forEach(function(data) {
+        //         console.log(data.key);
+        //     });
+        // });
+
+        let ref = firebase.database().ref(`adverts/active`);
+
+        
+        if (searchFilters && searchFilters.text) {
+            ref.orderByChild('title')
+            .startAt(`%${searchFilters.text}%`)
+            .endAt(searchFilters.text+"\uf8ff")
+            .on('value', (adverts) => handleResult(adverts, dispatch));
+        } else {
+            ref.limitToLast(100).on('value', (adverts) => handleResult(adverts, dispatch));
+        }
+    }
+
+    
 
     if (searchFilters.text) {
         filteredList = filteredList.filter((ad) => {
@@ -37,6 +71,26 @@ export function search(searchFilters) {
         type: actionType.ADVERT_SEARCH,
         payload: filteredList
     }
+}
+
+function handleResult(adverts, dispatch) {
+    var adList = [];
+    let advertsObj = adverts.val();
+
+    if (advertsObj && Object.keys(advertsObj).length > 0) {
+        Object.keys(advertsObj).map((adKey) => {
+            advertsObj[adKey].key = adKey;
+
+            adList.push(advertsObj[adKey]);
+        });
+    }
+
+    dispatch({ 
+        type: actionType.ADVERT_SEARCH,
+        payload: adList
+    });
+
+    dispatch({ type: actionType.IS_LOADING, payload: false });
 }
 
 export function changeSearchFilters(id, value) {

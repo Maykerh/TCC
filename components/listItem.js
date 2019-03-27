@@ -3,6 +3,12 @@ import { StyleSheet,TouchableHighlight, Text, View, Image } from 'react-native';
 import { labelTextColor } from '../assets/styleVariables';
 
 export default class ListItem extends PureComponent {
+    constructor(props) {
+        super(props);
+
+        this.getImage = this.getImage.bind(this);
+    }
+    
     formatDescription(text) {
         if (text.length <= 80) {
             return text;
@@ -11,11 +17,21 @@ export default class ListItem extends PureComponent {
         return text.slice(0, 80) + '...';
     }
 
+    getImage() {
+        var { image } = this.props;
+
+        if (image) {
+            return <Image style={styles.image} source={{ uri: 'data:image/jpeg;base64,' + image }}/>;
+        }
+
+        return <Image style={styles.image} source={require('../assets/images/no_image.png')}/>
+    }
+
     render() {
         return (
             <TouchableHighlight onPress={() => { this.props.onClickItem(this.props.id) }}>
                 <View style={styles.row}>
-                    <Image style={styles.image} source={require('../assets/images/no_image.png')}/>
+                    {this.getImage()}
                     <View style={styles.text}>
                         <Text style={styles.title}>
                             {this.props.title}

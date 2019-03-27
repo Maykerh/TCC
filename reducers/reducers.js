@@ -6,6 +6,7 @@ import Login from './login';
 import AdvertViewData from './advertViewData';
 import Signup from './signup';
 import LoadingState from './loadingState';
+import MyAdverts from './myAdverts';
 
 export default combineReducers({
     AdvertData,
@@ -14,5 +15,6 @@ export default combineReducers({
     Login,
     AdvertViewData,
     Signup,
-    LoadingState
+    LoadingState,
+    MyAdverts
 });

@@ -8,7 +8,7 @@ import ComboBox from '../components/comboBox';
 import { marginFormElements, defaultViewStyle, labelTextColor } from '../assets/styleVariables';
 import * as actions from '../actions/advertDataActions';
 import { RkTextInput } from 'react-native-ui-kitten';
-import { navigateAndReset } from '../helpers/navigationHelper';
+import Loading from '../components/loading';
 
 const categoryOptions = [
     { label: 'Madeira', value: 1 },
@@ -22,20 +22,60 @@ class AdvertData extends Component {
     constructor(props) {
         super(props);
 
+        this.createNewAd = this.createNewAd.bind(this);
         this.validateData = this.validateData.bind(this);
-    }
-    
-    validateData() {
-        var validation = true;
-        
-        // TODO: validação
 
-        if (validation) {
-            navigateAndReset(this.props.navigation, 'MyAdverts');
+        this.state = {
+            validation: {
+                title: null,
+                description: null,
+                category: null,
+                imageb64: null
+            }
         }
     }
 
+    createNewAd() {
+        if (!this.validateData()) {
+            return;
+        }
+
+        this.props.createNewAd(this.props);
+    }
+    
+    validateData() {
+        var { validation } = this.state;
+        var { title, description, category, imageb64 } = this.props;
+        
+        validation.title = (!title || title == '') ? 'error' : null;
+
+        validation.description = (!description || description == '') ? 'error' : null;
+
+        validation.category = (!category || category == '') ? 'error' : null;
+
+        // TODO: adicionar uma validação melhor para imagem
+        validation.imageb64 = (!imageb64 || imageb64 == '') ? 'error' : null;
+
+        this.setState({
+            validation: validation
+        });
+
+        for (var i in validation) {
+            if (validation[i] == 'error') {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     render() {
+        var { isLoading } = this.props;
+
+        if (isLoading) {
+			return <Loading/>;
+        }
+
         return (
             <View style={defaultViewStyle}>  
                 <View style={{marginTop: 5}}>
@@ -74,7 +114,7 @@ class AdvertData extends Component {
                 </View>
                 <View style={{marginTop: marginFormElements}}>
                     <Btn 
-                        onPress={this.validateData}
+                        onPress={this.createNewAd}
                         text={'Finalizar'} 
                         type={'xlarge'}
                     />
@@ -90,6 +130,7 @@ const mapStateToProps = (state) => {
         description: state.AdvertData.description,
         category: state.AdvertData.category,
         imageb64: state.AdvertData.imageb64,
+        isLoading: state.LoadingState.isLoading
     }
 };
 
@@ -99,6 +140,7 @@ const mapDispatchToProps = (dispatch) => {
         changeDescription: (description) => dispatch(actions.changeDescription(description)),
         changeCategory: (category) => dispatch(actions.changeCategory(category)),
         changeImage: (image) => dispatch(actions.changeImage(image)),
+        createNewAd: (props) => dispatch(actions.createNewAd(props)),
     }
 };
 

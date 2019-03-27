@@ -13,6 +13,45 @@ import Signup from '../containers/signup';
 import { mainColor, btnTextColor } from '../assets/styleVariables';
 
 export default createStackNavigator({
+    AdvertsList: {
+        screen: AdvertsList,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Anúncios',
+            headerStyle: {
+                backgroundColor: mainColor
+            },
+            headerTitleStyle: {
+                color: btnTextColor
+            },
+            headerTintColor: btnTextColor
+        })
+    },
+    MyAdverts: {
+        screen: MyAdverts,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Meus anúncios',
+            headerStyle: {
+                backgroundColor: mainColor
+            },
+            headerTitleStyle: {
+                color: btnTextColor
+            },
+            headerTintColor: btnTextColor
+        })
+    },
+    AdvertData: {
+        screen: AdvertData,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Novo anúncio',
+            headerStyle: {
+                backgroundColor: mainColor
+            },
+            headerTitleStyle: {
+                color: btnTextColor
+            },
+            headerTintColor: btnTextColor
+        })
+    },
     Login: {
         screen: Login,
         navigationOptions: ({ navigation }) => ({
@@ -42,19 +81,6 @@ export default createStackNavigator({
     PreLogin: {
         screen: PreLogin
     },
-    AdvertsList: {
-        screen: AdvertsList,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Anúncios',
-            headerStyle: {
-                backgroundColor: mainColor
-            },
-            headerTitleStyle: {
-                color: btnTextColor
-            },
-            headerTintColor: btnTextColor
-        })
-    },
     ChatList: {
         screen: ChatList,
         navigationOptions: ({ navigation }) => ({
@@ -72,19 +98,6 @@ export default createStackNavigator({
         screen: AdvertViewData,
         navigationOptions: ({ navigation }) => ({
             title: 'Dados do anúncio',
-            headerStyle: {
-                backgroundColor: mainColor
-            },
-            headerTitleStyle: {
-                color: btnTextColor
-            },
-            headerTintColor: btnTextColor
-        })
-    },
-    AdvertData: {
-        screen: AdvertData,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Novo anúncio',
             headerStyle: {
                 backgroundColor: mainColor
             },
@@ -123,19 +136,6 @@ export default createStackNavigator({
     Chat: {
         screen: Chat,
         navigationOptions: ({ navigation }) => ({
-            headerStyle: {
-                backgroundColor: mainColor
-            },
-            headerTitleStyle: {
-                color: btnTextColor
-            },
-            headerTintColor: btnTextColor
-        })
-    },
-    MyAdverts: {
-        screen: MyAdverts,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Meus anúncios',
             headerStyle: {
                 backgroundColor: mainColor
             },

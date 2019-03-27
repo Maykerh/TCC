@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text  } from 'react-native';
+import Text from 'react-native';
 
 export default () => {
     return (
         <Text>
-            'Loading...'
+            'Não há dados'
         </Text>
     )
 }

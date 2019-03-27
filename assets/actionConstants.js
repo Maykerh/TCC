@@ -21,6 +21,8 @@ export const HANDLE_CONTACT_NUMBER = 'handle contact number';
 /* ADVERTS LIST */
 export const ADVERT_SEARCH = 'advert search';
 export const CHANGE_FILTERS = 'change filters';
+export const LOAD_ACTIVE_ADVERTS_LIST = 'load active adverts list';
+export const LOAD_INACTIVE_ADVERTS_LIST = 'load inactive adverts list';
 
 /* LOGIN */
 export const HANDLE_LOGIN_EMAIL = 'handle login email'; 

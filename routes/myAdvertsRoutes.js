@@ -29,7 +29,9 @@ export default createMaterialTopTabNavigator(
         }
     },
     {
+        // TODO: atualizar a lib navigation pra funcionar a propriedade 'lazy', que não existe nessa versão!
         tabBarOptions: {
+            lazy: true,
             style: {
                 backgroundColor: mainColor,
             },

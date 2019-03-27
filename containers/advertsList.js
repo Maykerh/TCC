@@ -7,7 +7,7 @@ import { marginFormElements, defaultViewStyle, btnTextColor, mainColor } from '.
 import * as actions from '../actions/advertsListActions';
 import Modal from 'react-native-modalbox';
 import ComboBox from '../components/comboBox';
-import firebase from 'firebase';
+import Loading from '../components/loading';
 
 const styles = StyleSheet.create({
     filterBtn: {
@@ -50,6 +50,8 @@ class AdvertsList extends React.Component {
         this.handleSearch = this.handleSearch.bind(this);
         this.handleAdvertOpen = this.handleAdvertOpen.bind(this);
 
+        this.props.search();
+
         this.state = {
             filterModalOpened: false
         }
@@ -87,6 +89,12 @@ class AdvertsList extends React.Component {
     }
 
     render() {
+        var { isLoading, advertsList } = this.props;
+
+        if (isLoading) {
+			return <Loading/>;
+        }
+
         return (
             <View styles={defaultViewStyle}>
                 <SearchBar 
@@ -141,14 +149,17 @@ class AdvertsList extends React.Component {
 const mapStateToProps = (state) => {
     return {
         advertsList: state.AdvertsList.advertsList,
-        searchFilters: state.AdvertsList.searchFilters
+        searchFilters: state.AdvertsList.searchFilters,
+        isLoading: state.LoadingState.isLoading
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         search: (filters) => dispatch(actions.search(filters)),
-        changeSearchFilters: (id, value) => dispatch(actions.changeSearchFilters(id, value))
+        changeSearchFilters: (id, value) => dispatch(actions.changeSearchFilters(id, value)),
+        getActiveAds: () => dispatch(actions.getActiveAds()),
+        getInactiveAds: () => dispatch(actions.getInactiveAds())
     }
 }
 
